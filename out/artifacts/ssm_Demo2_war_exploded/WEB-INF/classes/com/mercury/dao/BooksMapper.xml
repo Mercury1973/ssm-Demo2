@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mercury.dao.BooksMapper">
+    <!--使用insert,update,delete,select标签写sql语句-->
+    <!--1.增加一条数据信息-->
+    <insert id="addBooks" parameterType="Books">
+        insert into ssmbuild_study.books(bookName, bookCounts, bookPrice, detail)
+        values (#{bookName}, #{bookCounts}, #{bookPrice}, #{detail})
+    </insert>
+
+    <!--2.根据id删除一条数据信息-->
+    <delete id="deleteBooksById" parameterType="int">
+        delete from ssmbuild_study.books
+        where bookID = #{bookID}
+    </delete>
+
+    <!--3.修改数据信息-->
+    <update id="updateBooks" parameterType="Books">
+        update ssmbuild_study.books
+        set bookName = #{bookName}, bookCounts = #{bookCounts}, bookPrice = #{bookPrice}, detail = #{detail}
+        where bookID = #{bookID};
+    </update>
+
+    <!--4.根据id查询对应的数据-->
+    <select id="queryBooksById" parameterType="int" resultType="Books">
+    select * from ssmbuild_study.books
+    where bookID = #{bookID};
+    </select>
+
+    <!--5.查询全部数据-->
+    <select id="queryAllBooks" resultType="Books">
+        SELECT * from ssmbuild_study.books;
+    </select>
+</mapper>
